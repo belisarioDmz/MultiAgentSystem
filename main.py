@@ -18,11 +18,15 @@ from warehouse import (
 
 import requests
 
-def send_agent_data_to_unity(agents_data, url="http://localhost:5005/"):
+def send_agent_data_to_unity(agents_data, products_data, url="http://localhost:5005/"):
     payload = {
         "agents": [
             {"id": agent_id, "positions": [[int(p[0]), int(p[1])] for p in positions]}
             for agent_id, positions in agents_data.items()
+        ],
+        "products":[
+            {"id": product_id, "positions": [[int(p[0]), int(p[1])] for p in positions]}
+            for product_id, positions in products_data.items()
         ]
     }
 
@@ -37,10 +41,10 @@ def send_agent_data_to_unity(agents_data, url="http://localhost:5005/"):
         print(f"Failed to send data to Unity: {e}")
 
 # Parámetros de la simulación (configurables).
-NUM_AGVS = 3
+NUM_AGVS = 4
 SEED = 42
 TOTAL_ARRIVALS = 5   # pallets que llegan en total durante la simulación
-STEPS = 155         # con más llegadas, sube esto para ver el flujo completo
+STEPS = 100         # con más llegadas, sube esto para ver el flujo completo
 
 
 def main():
@@ -63,7 +67,7 @@ def main():
         print(line)
 
     # Envio de datos a Unity
-    send_agent_data_to_unity(model.agent_position_history)
+    send_agent_data_to_unity(model.agent_position_history, model.product_position_history)
 
 
 if __name__ == "__main__":

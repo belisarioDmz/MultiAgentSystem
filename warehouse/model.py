@@ -87,6 +87,13 @@ class WarehouseModel(Model):
             self.agent_position_history[f"Agent_{agent.unique_id}"] = []
             self.agent_position_history[f"Agent_{agent.unique_id}"].append(agent.position)
 
+        #Diccionario de historial de productos
+        self.product_position_history = {}
+
+        #Asignacion de espacio de productos
+        for id in range(1, total_arrivals + 1):
+            self.product_position_history[f"P{id:03d}"] = []
+
 
     #Log
     def log(self, message):
@@ -199,6 +206,10 @@ class WarehouseModel(Model):
         #Registramos posiciones de agentes
         for agent in self.agents:
             self.agent_position_history[f"Agent_{agent.unique_id}"].append(agent.position)
+
+        #Registramos posiciones de productos
+        for product in self.environment.products:
+            self.product_position_history[product.id].append(product.position)
 
     def _record_history(self):
         #Guarda las métricas del step actual en el historial.
