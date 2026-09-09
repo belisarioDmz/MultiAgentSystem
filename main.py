@@ -43,8 +43,8 @@ def send_agent_data_to_unity(agents_data, products_data, url="http://localhost:5
 # Parámetros de la simulación (configurables).
 NUM_AGVS = 4
 SEED = 42
-TOTAL_ARRIVALS = 5   # pallets que llegan en total durante la simulación
-STEPS = 100         # con más llegadas, sube esto para ver el flujo completo
+TOTAL_ARRIVALS = 8   # pallets que llegan en total durante la simulación
+STEPS = 180         # con más llegadas, sube esto para ver el flujo completo
 
 
 def main():
@@ -54,6 +54,7 @@ def main():
 
     # Animación en ventana interactiva. Avanza STEPS pasos.
     animate_simulation(model, steps=STEPS, interval=200)
+    #model.run(STEPS)
 
     # Panel de resultados: tabla + gráficas de barras (en una ventana).
     plot_results(model, titulo=f"Escenario: {NUM_AGVS} AGVs")
