@@ -30,6 +30,7 @@ def send_agent_data_to_unity(agents_data, products_data, url="http://localhost:5
         ]
     }
 
+    print("\n=== PAYLOAD ===")
     print(payload)
 
     try:
