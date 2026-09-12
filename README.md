@@ -1,5 +1,8 @@
 Installation:
-- Copy the present repo in your local file system
+- Clone the present repo in your local file system
+- Create the virtual environment in your machine: python -m venv <name of your virtual environment>
+- Activate the environment using the right command for your terminal
+- Write in your terminal: pip install -r requirements.txt
 - (Optional) Follow instructions in MAS_Unity_Visualization repo to see how to do a 3D visualization
 
 Execution:
